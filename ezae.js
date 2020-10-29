@@ -134,7 +134,7 @@ function CREATE(selector) {
             insertBefore(element, parent);
             return self
         },
-        inside: (parent) => {
+        insideBottom: (parent) => {
             document.querySelector(parent).appendChild(self.element)
             return self
         },
@@ -376,3 +376,27 @@ const ALERT = {
     }
 }
 
+// Async AJAX JSON FETCH
+
+
+function COMPONENT(file)
+{
+    let comp = {
+        html : ""
+    }
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                comp.html = allText
+            }
+        }
+    }
+    rawFile.send(null);
+    return comp.html
+}
